@@ -1,0 +1,161 @@
+h1 {
+
+    color: black;
+    text-align: center;
+    margin: 0;
+
+}
+
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+body {
+
+    margin: 0
+
+}
+
+.btn { /**/
+
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: monospace;
+
+}
+
+.btn:hover { /* Dark colour background */
+
+    background-color: darkgray;
+
+}
+
+.astext { /* Only text on buttons*/
+
+    background:none;
+    border:none;
+    margin:0;
+    padding: 0;
+
+}
+
+.horizontal-center {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+/* REACTION GAME CSS */
+
+#divStart { /* Set starting div */
+
+    height: 100vh;
+
+    visibility: visible;
+}
+
+#divWaiting {
+
+    height: 100vh;
+    visibility: hidden;
+
+}
+
+#divClick {
+
+    height: 100vh;
+    visibility: hidden;
+
+}
+
+
+#start { /* Set prompt */
+
+    font-family: monospace;
+    font-size: 24px;
+    
+
+}
+
+#instructions { /* Explain game*/
+
+    font-family: monospace;
+    font-size: 24px;
+   
+ 
+
+}
+
+#score {
+
+    font-family: monospace;
+    font-size: 24px;
+
+}
+
+.score {
+
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    left:50%
+
+}
+
+.instructions {
+
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    left:50%
+
+}
+
+.start { /* Make Reaction block */
+
+    background-color: grey;
+    margin: auto;
+  
+}
+
+.divWaiting {
+
+    background-color: red;
+    margin: auto;
+
+}
+
+.divClick {
+
+    background-color: green;
+    margin: auto;
+
+}
+
+
+.centerHV { /* Horizontal/Vertical button */
+
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+      
+
+}
+
+/* END OF REACTION GAME CSS */
+
