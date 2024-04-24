@@ -5,13 +5,16 @@ let reactionTime;
 let reactTimer;
 let element = document.getElementById("divStart");
 let score;
+let bestTime = 0; //Store best time
+let curTime; //current time
 
 document.getElementById("divStart").onclick = function() {start()}; //Initiate "start" function once clicked
-
+document.getElementById("resetButton").style.visibility = 'hidden'; //hide button until after clicking 
 function changeIDWait() { //Changes from 'Start' to 'Waiting'
 
     document.getElementById("divStart").style.pointerEvents = 'none';
     document.getElementById("divStart").style.visibility = 'hidden';        //hide div
+    
     document.getElementById("start").innerHTML = ".....";                   //change div text
     document.getElementById("instructions").innerHTML = " ";                     //hide instructions
     
@@ -19,7 +22,7 @@ function changeIDWait() { //Changes from 'Start' to 'Waiting'
     document.getElementById("divStart").id = "divWaiting";                  //Switch id to waiting
 
     element = document.getElementById("divWaiting")
-    console.log("Current id is: " + element);
+    //console.log("Current id is: " + element);
 
     document.getElementById("divWaiting").style.visibility = 'Visible';     //Make div visible
     document.getElementById("divWaiting").style.backgroundColor = "#FF0000" //background = red
@@ -33,7 +36,7 @@ function changeIDClick() { //Changes ID to 'Click' and Starts reaction timer
     reactTimer = setInterval( () => {                                                         
 
         reactionTime = Date.now() - startTime;
-        console.log((reactionTime / 1000).toFixed(3)); //Returns time up until the third decimal point
+        //console.log((reactionTime / 1000).toFixed(3)); //Returns time up until the third decimal point
 
     }, 100);
 
@@ -47,6 +50,7 @@ function changeIDClick() { //Changes ID to 'Click' and Starts reaction timer
     document.getElementById("divClick").style.visibility = 'visible';     //Make div visible
     document.getElementById("divClick").style.backgroundColor = "#008000" //background = green
     document.getElementById("start").innerHTML = "Click";
+    
     document.getElementById("divClick").style.pointerEvents = 'initial';
     document.getElementById("divClick").onclick = function() {click()};
 
@@ -58,7 +62,7 @@ function start(){ //Starts waiting phase for some time
 
     const randTimer = setTimeout(() => {                            //Set random time
    
-        console.log(random);
+        //console.log(random);
         changeIDClick();                                            //After random time, swtich to green
         
     }, random)
@@ -74,13 +78,36 @@ function click () { //Click to get reaction time
 
     clearInterval(reactTimer);
     document.getElementById("start").innerHTML = "Your reaction time is " + (reactionTime / 1000).toFixed(3) + "s";
+    curTime = (reactionTime / 1000).toFixed(3)
+    console.log(curTime)
     document.getElementById("divClick").style.pointerEvents = 'none'; 
-    
+
+    //Make button visible after clicking
+    document.getElementById("resetButton").style.visibility = 'visible';
+
+    showBestTime()
+
+}
+
+function showBestTime() {       //Compare current time with the best time and change if needed
+
+    if (curTime >= bestTime ) {
+
+        bestTime = curTime
+        document.getElementById("bestTime").innerHTML = "Your best time is " + bestTime;
+
+    }
+
+    else {
+
+        document.getElementById("bestTime").innerHTML = "Your best time is " + bestTime;
+
+    }
 
 }
 
 
-/* Reset Function: Not working --- Currenly using window refresh function to reset game
+
 function resetGame() { //Reset game to default settings
 
     if (element = document.getElementById("divReact")) { //check which id is currently used
@@ -117,6 +144,5 @@ function resetGame() { //Reset game to default settings
     }
 
 }
-*/
 /* Clicking too fast will result in reactiontime = "NaNs" */
 /* Add highscore holder, previous score holder..etc */

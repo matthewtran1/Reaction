@@ -22,9 +22,11 @@ body {
 .btn { /**/
 
     color: black;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     font-family: monospace;
+    border-radius: 4px;
+    
 
 }
 
@@ -154,6 +156,12 @@ body {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
       
+
+}
+
+.btnVertical {  /* Set vertical location of button*/
+
+    top: 70%
 
 }
 
