@@ -147,7 +147,7 @@ body {
 }
 
 
-.centerHV { /* Horizontal/Vertical button */
+.centerHV { /* Horizontal/Vertical */
 
     margin: 0;
     position: absolute;
@@ -156,6 +156,26 @@ body {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
       
+
+}
+
+.centerHVBestTime { /* Horizontal/Vertical Best Time  */
+
+    margin: 0;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+      
+
+}
+
+
+.bestTimeStyle {
+
+    font-family: monospace;
+    font-size: 20px;
 
 }
 

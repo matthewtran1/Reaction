@@ -10,6 +10,8 @@ let curTime; //current time
 
 document.getElementById("divStart").onclick = function() {start()}; //Initiate "start" function once clicked
 document.getElementById("resetButton").style.visibility = 'hidden'; //hide button until after clicking 
+
+
 function changeIDWait() { //Changes from 'Start' to 'Waiting'
 
     document.getElementById("divStart").style.pointerEvents = 'none';
@@ -36,7 +38,7 @@ function changeIDClick() { //Changes ID to 'Click' and Starts reaction timer
     reactTimer = setInterval( () => {                                                         
 
         reactionTime = Date.now() - startTime;
-        //console.log((reactionTime / 1000).toFixed(3)); //Returns time up until the third decimal point
+        console.log((reactionTime / 1000).toFixed(3)); //Returns time up until the third decimal point
 
     }, 100);
 
@@ -80,10 +82,11 @@ function click () { //Click to get reaction time
     document.getElementById("start").innerHTML = "Your reaction time is " + (reactionTime / 1000).toFixed(3) + "s";
     curTime = (reactionTime / 1000).toFixed(3)
     console.log(curTime)
-    document.getElementById("divClick").style.pointerEvents = 'none'; 
+    
 
     //Make button visible after clicking
     document.getElementById("resetButton").style.visibility = 'visible';
+    document.getElementById("resetButton").style.pointerEvents = 'auto';
 
     showBestTime()
 
@@ -110,39 +113,23 @@ function showBestTime() {       //Compare current time with the best time and ch
 
 function resetGame() { //Reset game to default settings
 
-    if (element = document.getElementById("divReact")) { //check which id is currently used
+    //Reset back to orignal div
 
-        document.getElementById("start").innerHTML = "Press to Start"; 
-        document.getElementById("divReact").style.backgroundColor = "#808080"; 
+    //divClick set to divStart
+    document.getElementById("divClick").id = "divStart";
 
-    }
+    //Set divStart to original color
+    document.getElementById("divStart").style.backgroundColor = "#808080";
 
-    else if (element = document.getElementById("divWaiting")) { //check which id is currently used
+    //Display instructions and start game 
+    document.getElementById("start").innerHTML = "Press to Start";                                  
+    document.getElementById("instructions").innerHTML = "Test Your Reaction Speed! ";                    
+    
+    //hide button until after resetting 
+    document.getElementById("resetButton").style.display = 'none'; 
 
-        clearTimeout(random);
-        document.getElementById("divWaiting").style.visibility = 'hidden';  
-        document.getElementById("start").innerHTML = "Press to Start"; 
-        document.getElementById("divWaiting").id = "divReact";  
-        document.getElementById("divReact").style.pointerEvents = 'initial';
-        document.getElementById("divReact").style.backgroundColor = "#808080"; 
-        document.getElementById("divReact").style.visibility = 'visible';                   
-     
-
-    }
-
-    else if (element = document.getElementById("divClick")) {
-
-        clearInterval(reactTimer);
-        document.getElementById("divClick").style.visibility = 'hidden';  
-        document.getElementById("start").innerHTML = "Press to Start"; 
-        document.getElementById("divClick").id = "divReact";  
-        document.getElementById("divReact").style.pointerEvents = 'initial';
-        document.getElementById("divReact").style.backgroundColor = "#808080"; 
-        document.getElementById("divReact").style.visibility = 'visible';                   
-       
-
-    }
-
+   
 }
+
 /* Clicking too fast will result in reactiontime = "NaNs" */
 /* Add highscore holder, previous score holder..etc */
