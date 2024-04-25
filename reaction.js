@@ -1,16 +1,15 @@
 //REACTION GAME
 //Var
 var random = Math.floor((Math.random() * 2000) + 1000); //Generate random number from 1 to 3
-let reactionTime;
+let reactionTime;       //How fast the user clicks the screen 
 let reactTimer;
 let element = document.getElementById("divStart");
-let score;
-let bestTime = 0; //Store best time
+let bestTime; //Store best time
 let curTime; //current time
 
 document.getElementById("divStart").onclick = function() {start()}; //Initiate "start" function once clicked
 document.getElementById("resetButton").style.visibility = 'hidden'; //hide button until after clicking 
-
+document.getElementById("bestTime").style.visibility = 'hidden';
 
 function changeIDWait() { //Changes from 'Start' to 'Waiting'
 
@@ -20,11 +19,12 @@ function changeIDWait() { //Changes from 'Start' to 'Waiting'
     document.getElementById("start").innerHTML = ".....";                   //change div text
     document.getElementById("instructions").innerHTML = " ";                     //hide instructions
     
-
     document.getElementById("divStart").id = "divWaiting";                  //Switch id to waiting
 
     element = document.getElementById("divWaiting")
-    //console.log("Current id is: " + element);
+
+    //Hide reset button
+    document.getElementById("resetButton").style.visibility = 'hidden'; 
 
     document.getElementById("divWaiting").style.visibility = 'Visible';     //Make div visible
     document.getElementById("divWaiting").style.backgroundColor = "#FF0000" //background = red
@@ -84,52 +84,39 @@ function click () { //Click to get reaction time
     console.log(curTime)
     
 
-    //Make button visible after clicking
+    //Make button / best time visible after clicking
     document.getElementById("resetButton").style.visibility = 'visible';
     document.getElementById("resetButton").style.pointerEvents = 'auto';
+    document.getElementById("bestTime").style.visibility = 'visible';
 
     showBestTime()
 
 }
 
-function showBestTime() {       //Compare current time with the best time and change if needed
+function showBestTime() {               //Display the best time
+    console.log(curTime, bestTime)
+    if (curTime >= bestTime) {
 
-    if (curTime >= bestTime ) {
-
-        bestTime = curTime
-        document.getElementById("bestTime").innerHTML = "Your best time is " + bestTime;
+        document.getElementById("bestTime").innerHTML = "Your best time is " + bestTime +"s";
 
     }
 
     else {
-
-        document.getElementById("bestTime").innerHTML = "Your best time is " + bestTime;
+        bestTime = curTime
+        document.getElementById("bestTime").innerHTML = "Your best time is " + bestTime +"s";
 
     }
 
 }
 
 
+function resetGame() { 
 
-function resetGame() { //Reset game to default settings
-
-    //Reset back to orignal div
-
-    //divClick set to divStart
+    //set id divClick back to divStart
     document.getElementById("divClick").id = "divStart";
-
-    //Set divStart to original color
-    document.getElementById("divStart").style.backgroundColor = "#808080";
-
-    //Display instructions and start game 
-    document.getElementById("start").innerHTML = "Press to Start";                                  
-    document.getElementById("instructions").innerHTML = "Test Your Reaction Speed! ";                    
-    
-    //hide button until after resetting 
-    document.getElementById("resetButton").style.display = 'none'; 
-
+       
+    //Initiate "start" function to being at the red screen again
+    document.getElementById("divStart").onclick = function() {start()}; 
    
 }
 
-/* Clicking too fast will result in reactiontime = "NaNs" */
-/* Add highscore holder, previous score holder..etc */
