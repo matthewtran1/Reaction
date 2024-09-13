@@ -1,3 +1,3 @@
 # Reaction
 
-Test your reaction speed!
+Users can test their reaction speed by playing this reaction game. 
